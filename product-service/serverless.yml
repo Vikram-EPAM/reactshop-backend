@@ -19,12 +19,14 @@ functions:
   getProductsList:
     handler: getProductsList.handler
     events:
-      - httpApi:
+      - http:
           method: get
           path: /products
+          cors: true
   getProductsById:
     handler: getProductsById.handler
     events:
-      - httpApi:
+      - http:
           method: get
           path: /products/{id}
+          cors: true
