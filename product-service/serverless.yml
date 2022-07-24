@@ -45,6 +45,13 @@ functions:
           method: get
           path: /products/{id}
           cors: true
+  createProduct:
+    handler: createProduct.handler
+    events:
+      - http:
+          method: post
+          path: /products
+          cors: true
 resources:
   Resources:
     S3BucketApiDocs:

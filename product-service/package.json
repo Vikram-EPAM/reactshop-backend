@@ -24,6 +24,7 @@
   "author": "The serverless webpack authors (https://github.com/elastic-coders/serverless-webpack)",
   "license": "MIT",
   "dependencies": {
+    "joi": "^17.6.0",
     "pg": "^8.7.3"
   }
 }

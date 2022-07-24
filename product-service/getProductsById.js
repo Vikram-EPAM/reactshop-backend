@@ -1,11 +1,10 @@
 import { getHeaders } from "../utils/headers";
 import { getProductById } from "./service";
-import pgClient from "./pg-client";
 
 export const handler = async (event, context) => {
   const headers = getHeaders();
   try {
-    const product = await getProductById(event.pathParameters.id, pgClient);
+    const product = await getProductById(event.pathParameters.id);
     if (!product) {
       return {
         statusCode: 404,
