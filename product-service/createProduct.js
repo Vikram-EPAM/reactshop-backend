@@ -13,7 +13,7 @@ export const handler = async (event, context) => {
   const headers = getHeaders();
   const product = JSON.parse(event.body);
   try {
-    const val = await productSchema.validateAsync(product);
+    await productSchema.validateAsync(product);
   } catch (e) {
     return {
       statusCode: 400,
