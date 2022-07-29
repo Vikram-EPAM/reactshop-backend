@@ -10,3 +10,6 @@ jspm_packages
 
 # Swagger directories
 .swagger-ui
+
+.env.dev
+.env.prod

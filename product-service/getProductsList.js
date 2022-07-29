@@ -3,6 +3,7 @@ import { getProducts } from "./service";
 
 export const handler = async (event, context) => {
   const headers = getHeaders();
+  console.log("getProducts request");
   try {
     const products = await getProducts();
     return {
