@@ -13,11 +13,6 @@ plugins:
 custom:
   swaggerUi:
     s3Bucket: aws-reactshop-api-docs
-    exportType: swagger
-    accepts: application/json
-    swaggerUiConfig:
-      supportedSubmitMethods: ["get", "post", "put", "delete"]
-
 provider:
   name: aws
   runtime: nodejs12.x
@@ -31,7 +26,6 @@ functions:
       - http:
           method: get
           path: /products
-          cors: true
     environment:
       DB_USER: ${env:DB_USER}
       DB_PASSWORD: ${env:DB_PASSWORD}
@@ -44,14 +38,24 @@ functions:
       - http:
           method: get
           path: /products/{id}
-          cors: true
+    environment:
+      DB_USER: ${env:DB_USER}
+      DB_PASSWORD: ${env:DB_PASSWORD}
+      DB_HOST: ${env:DB_HOST}
+      DB_PORT: ${env:DB_PORT}
+      DB_NAME: ${env:DB_NAME}
   createProduct:
     handler: createProduct.handler
     events:
       - http:
           method: post
           path: /products
-          cors: true
+    environment:
+      DB_USER: ${env:DB_USER}
+      DB_PASSWORD: ${env:DB_PASSWORD}
+      DB_HOST: ${env:DB_HOST}
+      DB_PORT: ${env:DB_PORT}
+      DB_NAME: ${env:DB_NAME}
 resources:
   Resources:
     S3BucketApiDocs:

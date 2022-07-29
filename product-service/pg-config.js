@@ -8,5 +8,4 @@ const pgConfig = {
   port: process.env.DB_PORT,
 };
 
-export const pgClient = new pg.Client(pgConfig);
 export const pgPool = new pg.Pool(pgConfig);

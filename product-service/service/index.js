@@ -1,20 +1,24 @@
-import { pgClient, pgPool } from "../pg-config";
+import { pgPool } from "../pg-config";
 
 export const getProducts = async () => {
-  await pgClient.connect();
-  const result = await pgClient.query(
-    `SELECT 
+  try {
+    const client = await pgPool.connect();
+    const result = await client.query(
+      `SELECT 
      id, title, description, price, count 
      FROM products 
      INNER JOIN stocks 
      ON products.id = stocks.product_id`
-  );
-  await pgClient.end();
-  return result.rows;
+    );
+    await client.release();
+    return result.rows;
+  } catch (err) {
+    console.log(err);
+  }
 };
 export const getProductById = async (id) => {
-  await pgClient.connect();
-  const result = await pgClient.query(
+  const client = await pgPool.connect();
+  const result = await client.query(
     `SELECT 
      id, title, description, price, count 
      FROM products 
@@ -23,7 +27,7 @@ export const getProductById = async (id) => {
      WHERE id = $1`,
     [id]
   );
-  await pgClient.end();
+  await client.release();
   return result.rows[0];
 };
 

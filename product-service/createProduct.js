@@ -12,6 +12,7 @@ const productSchema = Joi.object({
 export const handler = async (event, context) => {
   const headers = getHeaders();
   const product = JSON.parse(event.body);
+  console.log("createProduct request", product);
   try {
     await productSchema.validateAsync(product);
   } catch (e) {
